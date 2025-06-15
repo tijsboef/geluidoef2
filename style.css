@@ -4,7 +4,9 @@
   --accent: #32CD32;
   --text-color: #E0E0E0;
 }
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 body {
   margin: 0;
   padding: 0;
