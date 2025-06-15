@@ -41,7 +41,7 @@ function initLevel1() {
       <button id="sonar-ping" class="btn">Zend Sonar Ping</button>
     </div>
   `;
-  c.querySelectorAll('.option').forEach(b => b.onclick = () => handleMCQ1(b));
+  c.querySelectorAll('.option').forEach(btn => btn.onclick = () => handleMCQ1(btn));
   setupSonarGame();
 }
 
@@ -59,7 +59,7 @@ function handleMCQ1(btn) {
 function setupSonarGame() {
   const canvas = document.getElementById('submarine-canvas');
   const ctx = canvas.getContext('2d');
-  const targets = Array.from({length:3}, () => ({
+  const targets = Array.from({ length: 3 }, () => ({
     x: Math.random() * 580 + 10,
     y: Math.random() * 280 + 10,
     found: false
@@ -68,13 +68,13 @@ function setupSonarGame() {
 
   function draw() {
     ctx.clearRect(0, 0, 600, 300);
-    ctx.fillStyle = '#32CD32';
-    ctx.fillRect(270, 140, 60, 20); // submarine
+    ctx.fillStyle = varAccent();
+    ctx.fillRect(270, 140, 60, 20); // onderzeeër
     targets.forEach(t => {
       if (t.found) {
         ctx.beginPath();
         ctx.arc(t.x, t.y, 10, 0, 2 * Math.PI);
-        ctx.strokeStyle = '#32CD32';
+        ctx.strokeStyle = varAccent();
         ctx.stroke();
       }
     });
@@ -117,14 +117,14 @@ function initLevel2() {
       <button id="freq-submit" class="btn">Verstuur</button>
     </div>
   `;
-  c.querySelectorAll('.option').forEach(b => b.onclick = () => {
-    if (b.dataset.correct === 'true') {
+  c.querySelectorAll('.option').forEach(btn => btn.onclick = () => {
+    if (btn.dataset.correct === 'true') {
       score += 100;
       alert('+100 punten');
     } else {
       alert('Niet correct.');
     }
-    b.disabled = true;
+    btn.disabled = true;
   }));
   drawSine('osc', 2, 0.005, 100);
   document.getElementById('freq-submit').onclick = () => {
@@ -139,28 +139,30 @@ function initLevel2() {
   };
 }
 
-// Hergebruik drawSine() en varAccent()
 function drawSine(id, cycles, dt, amp) {
-  const c = document.getElementById(id),
-        ctx = c.getContext('2d');
+  const c = document.getElementById(id);
+  const ctx = c.getContext('2d');
   ctx.clearRect(0, 0, c.width, c.height);
   ctx.strokeStyle = varAccent();
   ctx.beginPath();
   for (let x = 0; x < c.width; x++) {
     const t = x * dt;
     const y = c.height / 2 - amp * Math.sin(2 * Math.PI * cycles * t);
-    x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    if (x === 0) ctx.moveTo(x, y);
+    else ctx.lineTo(x, y);
   }
   ctx.stroke();
 }
+
 function varAccent() {
   return getComputedStyle(document.documentElement)
-    .getPropertyValue('--accent').trim();
+    .getPropertyValue('--accent')
+    .trim();
 }
 
-// Vervolg met Level 3, Level 4 en Highscores...
-function initLevel3() { /* ... */ }
-function initLevel3Minigame() { /* ... */ }
-function initLevel4() { /* ... */ }
-function setupDrag() { /* ... */ }
-function showHighscores() { /* ... */ }
+// Stubs voor volgende levels
+function initLevel3() { console.log('Level 3 niet geïmplementeerd'); }
+function initLevel3Minigame() { console.log('Level 3 minigame'); }
+function initLevel4() { console.log('Level 4 niet geïmplementeerd'); }
+function setupDrag() { console.log('Drag & drop setup'); }
+function showHighscores() { console.log('Highscores tonen'); }
