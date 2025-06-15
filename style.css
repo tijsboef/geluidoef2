@@ -1,0 +1,60 @@
+:root {
+  --primary: #006400;
+  --secondary: #1E1E1E;
+  --accent: #32CD32;
+  --text-color: #E0E0E0;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--secondary);
+  color: var(--text-color);
+  font-family: sans-serif;
+}
+header, footer {
+  background-color: var(--primary);
+  text-align: center;
+  padding: 1rem;
+}
+h1, h2 {
+  margin: 0.5rem 0;
+}
+#game-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
+}
+button, .btn {
+  background: var(--accent);
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  color: var(--secondary);
+  cursor: pointer;
+  font-size: 1rem;
+  margin: 0.25rem;
+}
+.question {
+  margin-bottom: 1rem;
+}
+.options {
+  list-style: none;
+  padding: 0;
+}
+.options li {
+  margin: 0.5rem 0;
+}
+input[type="number"],
+input[type="text"] {
+  padding: 0.25rem;
+  font-size: 1rem;
+  margin-right: 0.5rem;
+}
+canvas {
+  background: #000;
+  display: block;
+  margin: 1rem auto;
+}
